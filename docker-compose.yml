@@ -1,0 +1,18 @@
+services:
+  web:
+    image: nginx:alpine
+    ports:
+      - "5500:80"
+    volumes:
+      - ./front:/usr/share/nginx/html
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+
+  ngrok:
+    image: ngrok/ngrok:latest
+    depends_on:
+      - web
+    environment:
+      - NGROK_AUTHTOKEN=30y1Bb2VYxhYxD6YNZoiNTGA4zl_6zyXXdpgTyZYYExtDVf68
+    command: http web:80 --log=stdout  # Added logging
+    ports:
+      - "4040:4040"
