@@ -25,7 +25,7 @@
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assets/style.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: Regna
@@ -51,10 +51,9 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="#about">About</a></li>
-          <li><a class="nav-link scrollto" href="#services">Services</a></li>
-          <li><a class="nav-link scrollto " href="#portfolio">FabLab</a></li>
-          <li><a class="nav-link scrollto" href="#team">Training</a></li>
+        <li><a class="nav-link scrollto" href="#about">About Us</a></li>
+        <li><a class="nav-link scrollto" href="#services">Services</a></li>
+        <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
           <li class="dropdown">
             <a href="#solution">
               <span>Solutions</span> <i class="bi bi-chevron-down"></i>
@@ -72,6 +71,8 @@
           </li>
           
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          <li><a class="nav-link scrollto" href="./signup/signup.html">Login</a></li>
+          <li><a class="nav-link scrollto" href="./signup/signup.html">Sign Up</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -79,52 +80,58 @@
   </header><!-- End Header -->
 
   <!-- ======= Hero Section ======= -->
-  <section id="hero">
-    <div class="hero-container" data-aos="zoom-in" data-aos-delay="100">
-      <h1>Welcome to Tech4IoT</h1>
-      <h2>"Where Innovation and Technology Converge, Your Pathway to the Future"</h2>
-      <a href="#about" class="btn-get-started">Get Started</a>
-    </div>
-  </section><!-- End Hero Section -->
+<!-- ======= Hero Section ======= -->
+<section id="hero">
+  <div class="hero-video-container">
+    <video autoplay muted loop playsinline id="hero-video">
+      <source src="assets/img/Content Creation Tips.mp4" type="video/mp4">
+      <!-- Fallback image if video doesn't load -->
+      <img src="assets/img/hero-background-fallback.jpg" alt="Tech4IoT background">
+    </video>
+  </div>
+  <div class="hero-container" data-aos="zoom-in" data-aos-delay="100">
+    <h1>Welcome to Tech4IoT</h1>
+    <h2>"Where Innovation and Technology Converge, Your Pathway to the Future"</h2>
+    <a href="#about" class="btn-get-started">Get Started</a>
+  </div>
+</section>
 
   <main id="main">
-
-    <!-- ======= About Section ======= -->
     <section id="about">
-      <div class="container" data-aos="fade-up">
-        <div class="row about-container">
-
-          <div class="col-lg-6 content order-lg-1 order-2">
-            <h2 class="title">Few Words About Us</h2>
-            <p>
-              We are a forward-looking startup with a deep-rooted interest in IoT, artificial intelligence, and electronics. Our team is passionate about pushing the boundaries of technology and exploring new horizons. With the advantage of our fablab, we turn concepts into prototypes, fostering a hands-on approach to creativity.  
-            </p>
-
-            <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
-              <div class="icon"><i class="bi bi-briefcase"></i></div>
-              <h4 class="title"><a >Innovative Solutions</a></h4>
-              <p class="description">We're passionate about exploring the endless potential of IoT and AI, creating solutions that transform industries and elevate user experiences.</p>
+        <div class="container" data-aos="fade-up">
+          <div class="row about-container">
+  
+            <div class="col-lg-6 content order-lg-1 order-2">
+              <h2 class="title">Few Words About Us</h2>
+              <p>
+                We are a forward-looking startup with a deep-rooted interest in IoT, artificial intelligence, and electronics. Our team is passionate about pushing the boundaries of technology and exploring new horizons. With the advantage of our fablab, we turn concepts into prototypes, fostering a hands-on approach to creativity.  
+              </p>
+  
+              <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+                <div class="icon"><i class="bi bi-briefcase"></i></div>
+                <h4 class="title"><a>Innovative Solutions</a></h4>
+                <p class="description">We're passionate about exploring the endless potential of IoT and AI, creating solutions that transform industries and elevate user experiences. Our platform makes device management intuitive and powerful.</p>
+              </div>
+  
+              <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
+                <div class="icon"><i class="bi bi-device-hdd"></i></div>
+                <h4 class="title"><a>Smart Device Hub</a></h4>
+                <p class="description">Connect and manage all your IoT devices through our unified dashboard. Add new devices with ease and monitor everything in one place.</p>
+              </div>
+  
+              <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
+                <div class="icon"><i class="bi bi-shield-lock"></i></div>
+                <h4 class="title"><a>Secure & Scalable</a></h4>
+                <p class="description">Built with robust security from our fablab-tested prototypes to ensure your devices and data remain protected as you grow.</p>
+              </div>
+  
             </div>
-
-            <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
-              <div class="icon"><i class="bi bi-card-checklist"></i></div>
-              <h4 class="title"><a >Integrated FabLab</a></h4>
-              <p class="description">Our creative hub empowers rapid prototyping, accelerating the transition from concept to reality.</p>
-            </div>
-
-            <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
-              <div class="icon"><i class="bi bi-binoculars"></i></div>
-              <h4 class="title"><a >Comprehensive Training</a></h4>
-              <p class="description">Our training goes beyond theory. It's hands-on, providing participants with the tools to effectively apply AI and IoT concepts in real-world scenarios.</p>
-            </div>
-
+  
+            <div class="col-lg-6 background order-lg-2 order-1" data-aos="fade-left" data-aos-delay="100" style="background-image: url('assets/img/about.jpg');"></div>
           </div>
-
-          <div class="col-lg-6 background order-lg-2 order-1" data-aos="fade-left" data-aos-delay="100"></div>
+  
         </div>
-
-      </div>
-    </section><!-- End About Section -->
+      </section> 
 
     <!-- ======= Facts Section ======= -->
     <!-- End Facts Section -->
@@ -136,45 +143,56 @@
 
     <!-- ======= Services Section ======= -->
     <section id="services">
-      <div class="container" data-aos="fade-up">
-        <div class="section-header">
-          <h3 class="section-title">Services</h3>
-          <p class="section-description">We're dedicated to delivering a diverse range of services that cater to your unique needs.</p>
+  <div class="container" data-aos="fade-up">
+    <div class="section-header">
+      <h3 class="section-title">Our Platform Services</h3>
+      <p class="section-description">Everything you need to manage your IoT ecosystem in one place</p>
+    </div>
+    <div class="row">
+      <!-- Device Management -->
+      <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+        <div class="service-box">
+          <div class="icon-box">
+            <i class="bi bi-device-hdd"></i>
+          </div>
+          <h4 class="title">Device Management</h4>
+          <p class="description">Seamlessly add, organize and monitor all your IoT devices through our intuitive dashboard interface with real-time status updates.</p>
+          <div class="service-link">
+            <a href="#" class="disabled-link">Available after login</a>
+          </div>
         </div>
-        <div class="row">
-          <div class="col-lg-4 col-md-6" data-aos="zoom-in">
-            <div class="box">
-              <div class="icon"><a href="#solution"><i class="bi bi-lightbulb"></i></a></div>
-              <h4 class="title"><a href="#solution">Solutions</a></h4>
-              <p class="description">Discover a new dimension of business enhancement with our tailored solutions in Artificial Intelligence (AI), Internet of Things (IoT), and the cutting-edge realm of Industry 4.0. </p>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6" data-aos="zoom-in">
-            <div class="box">
-              <div class="icon"><a href="#team"><i class="bi bi-card-checklist"></i></a></div>
-              <h4 class="title"><a href="#team">Training</a></h4>
-              <p class="description">We offer comprehensive training in the fields of IoT, AI, and Industry 4.0, equipping you with essential skills to navigate these transformative technologies.</p>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6" data-aos="zoom-in">
-            <div class="box">
-              <div class="icon"><a href="#portfolio"><i class="bi bi-gear"></i></a></div>
-              <h4 class="title"><a href="#portfolio">FABLAB</a></h4>
-              <p class="description">Our FabLab provides the tools, resources, and expert guidance you need to experiment, prototype, and craft without any limitations.</p>
-            </div>
-          </div>
-<!-- 
-          <div class="col-lg-4 col-md-6" data-aos="zoom-in">
-            <div class="box">
-              <div class="icon"><a href=""><i class="bi bi-binoculars"></i></a></div>
-              <h4 class="title"><a href="">Kid's bots</a></h4>
-              <p class="description">Discover our kids' club, where young learners delve into the realm of technology, including the exciting field of robotics.</p>
-            </div>
-          </div>
-        --> 
-
       </div>
-    </section><!-- End Services Section -->
+
+      <!-- Data Visualization -->
+      <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="100">
+        <div class="service-box">
+          <div class="icon-box">
+            <i class="bi bi-graph-up"></i>
+          </div>
+          <h4 class="title">Data Analytics</h4>
+          <p class="description">Gain valuable insights with customizable dashboards and historical data visualization for all your connected devices.</p>
+          <div class="service-link">
+            <a href="#" class="disabled-link">Available after login</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- API Integration -->
+      <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
+        <div class="service-box">
+          <div class="icon-box">
+            <i class="bi bi-plug"></i>
+          </div>
+          <h4 class="title">API Integration</h4>
+          <p class="description">Connect your existing systems with our robust API for seamless data flow between your devices and business applications.</p>
+          <div class="service-link">
+            <a href="docs/api-documentation.html">View Documentation <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 
     <!-- ======= Portfolio Section ======= -->
@@ -539,7 +557,14 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const video = document.getElementById('hero-video');
+    if (video) {
+      video.playbackRate = 0.5; // Adjust this value (0.5 = half speed, 0.75 = 75% speed, etc.)
+    }
+  });
+  </script>
 </body>
 
 </html>
