@@ -8,7 +8,7 @@ const _User = sequelize.define('_User', {
     autoIncrement: true,
     primaryKey: true
   },
-  FullName: {
+  fullName: {
     type: DataTypes.STRING(100),
     allowNull: false,
     validate: {
@@ -16,16 +16,16 @@ const _User = sequelize.define('_User', {
       len: [2, 100]
     }
   },
-  Password: {
+  password: {
     type: DataTypes.STRING,
     allowNull: false,
     set(value) {
       const salt = bcrypt.genSaltSync(12);
       const hash = bcrypt.hashSync(value, salt);
-      this.setDataValue('Password', hash);
+      this.setDataValue('password', hash);
     }
   },
-  Email: {
+  email: {
     type: DataTypes.STRING(100),
     allowNull: false,
     unique: {
@@ -37,20 +37,23 @@ const _User = sequelize.define('_User', {
       notEmpty: true
     },
     set(value) {
-      // Force lowercase and trim whitespace
-      this.setDataValue('Email', value.toString().toLowerCase().trim());
+      this.setDataValue('email', value.toString().toLowerCase().trim());
     }
   },
-  Region: {
+  region: {
     type: DataTypes.STRING(100),
     allowNull: false
   },
-  PhoneNumber: {
+  phoneNumber: {
     type: DataTypes.STRING(20),
     allowNull: false,
     validate: {
       notEmpty: true
     }
+  },
+  position: {
+    type: DataTypes.STRING(20),
+    allowNull: false
   }
 }, {
   timestamps: false,
@@ -58,14 +61,14 @@ const _User = sequelize.define('_User', {
   indexes: [
     {
       unique: true,
-      fields: ['Email']
+      fields: ['email']
     }
   ]
 });
 
 // Password comparison method
 _User.prototype.comparePassword = function(candidatePassword) {
-  return bcrypt.compareSync(candidatePassword, this.Password);
+  return bcrypt.compareSync(candidatePassword, this.password);
 };
 
 module.exports = _User;

@@ -7,201 +7,302 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
     * {
-      box-sizing: border-box;
-    }
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-    body {
-      background-color: #ecf0f1; /* Light blue-grey background */
-      font-family: 'Source Sans Pro', sans-serif;
-      color: #666;
-    }
+body {
+  background-color: #f5f7fa;
+  font-family: 'Source Sans Pro', sans-serif;
+  color: #4a5568;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.6s ease;
+}
 
-    /* Login/Signup container */
-    .loginOrSignupField {
-      width: 400px;
-      height: 620px; /* reduced height */
-      padding: 55px 20px 20px 20px;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(0);
-      background: #fff;
-      box-shadow: 0 0 0 2px #3498DB;
-      border-radius: 3px;
-      overflow: hidden;
-      font-size: 12px;
-      font-weight: 900;
-      text-transform: uppercase;
-      text-align: center;
-      letter-spacing: 2px;
-      opacity: 0;
-      transition: transform 0.4s ease, opacity 0.4s ease;
-    }
+/* Login/Signup container */
+.loginOrSignupField {
+  width: 420px;
+  height: 600px;
+  padding: 60px 30px 30px;
+  position: relative;
+  background: #fff;
+  box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
+  border-radius: 8px;
+  overflow: hidden;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 1.5px;
+  opacity: 0;
+  transform: translateY(20px) scale(0.98);
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  will-change: transform, opacity;
+}
 
-    /* Switch button */
-    .switchButtonField {
-      width: 100%;
-      height: 15px;
-      position: absolute;
-      top: 30px;
-      left: 0;
-    }
+.loginOrSignupField.active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
 
-    .switchButtonOuter {
-      width: 35px;
-      height: 100%;
-      background: #3498DB;
-      margin: auto;
-      position: relative;
-      border-radius: 3px;
-      box-shadow: 0 0 0 2px #3498DB;
-      cursor: pointer;
-    }
+/* Switch button */
+.switchButtonField {
+  width: 100%;
+  height: 18px;
+  position: absolute;
+  top: 30px;
+  left: 0;
+}
 
-    .switchButtonInner {
-      width: 50%;
-      height: 100%;
-      background: #fff;
-      position: absolute;
-      top: 0;
-      left: 0;
-      border-radius: 3px;
-      transition: left 0.3s ease;
-    }
+.switchButtonOuter {
+  width: 42px;
+  height: 100%;
+  background: #3498DB;
+  margin: 0 auto;
+  position: relative;
+  border-radius: 9px;
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
 
-    .switchButtonOuter:before,
-    .switchButtonOuter:after {
-      height: 100%;
-      padding: 0 20px;
-      position: absolute;
-      top: 0;
-      white-space: nowrap;
-      line-height: 15px;
-      background: transparent;
-      color: #ddd;
-      cursor: pointer;
-    }
+.switchButtonOuter:hover {
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.5);
+}
 
-    .loginOrSignupField.signup_ON .switchButtonOuter:before {
-  color: #ddd; /* Greyed out Login */
+.switchButtonInner {
+  width: 50%;
+  height: 100%;
+  background: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 9px;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.switchButtonOuter:before,
+.switchButtonOuter:after {
+  content: '';
+  height: 100%;
+  padding: 0 22px;
+  position: absolute;
+  top: 0;
+  white-space: nowrap;
+  line-height: 18px;
+  background: transparent;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.switchButtonOuter:before {
+  content: "Login";
+  right: 100%;
+}
+
+.switchButtonOuter:after {
+  content: "Sign up";
+  left: 100%;
+}
+
+.loginOrSignupField.signup_ON .switchButtonOuter:before {
+  color: #a0aec0;
 }
 
 .loginOrSignupField.signup_ON .switchButtonOuter:after {
-  color: #3498DB; /* Active blue Sign up */
+  color: #3498DB;
+  font-weight: 700;
 }
 
 .loginOrSignupField:not(.signup_ON) .switchButtonOuter:before {
-  color: #3498DB; /* Active blue Login */
+  color: #3498DB;
+  font-weight: 700;
 }
 
 .loginOrSignupField:not(.signup_ON) .switchButtonOuter:after {
-  color: #ddd; /* Greyed out Sign up */
+  color: #a0aec0;
 }
 
+.loginOrSignupField.signup_ON .switchButtonInner {
+  left: 50%;
+  transform: translateX(0);
+}
 
-    .switchButtonOuter:before {
-      content: "Login";
-      right: 100%;
-      color: #3498DB;
-    }
+form {
+  margin-top: 20px;
+  transition: all 0.4s ease;
+}
 
-    .switchButtonOuter:after {
-      content: "Sign up";
-      left: 100%;
-    }
+input[type="email"],
+input[type="password"],
+input[type="text"],
+input[type="tel"] {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  margin: 15px auto;
+  padding: 12px 15px;
+  text-align: center;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  font-size: 14px;
+  color: #4a5568;
+  background-color: #f8fafc;
+}
 
-    .loginOrSignupField.signup_ON .switchButtonInner {
-      left: 50%;
-    }
+input:focus {
+  outline: none;
+  border-color: #3498DB;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+  transform: translateY(-1px);
+}
 
-    form {
-      margin-top: 10px;
-    }
+input::placeholder {
+  color: #a0aec0;
+  font-weight: 400;
+  text-transform: none;
+}
 
-    input[type="email"],
-    input[type="password"],
-    input[type="text"],
-    input[type="tel"] {
-      display: block;
-      width: 80%;
-      margin: 10px auto;
-      padding: 10px;
-      text-align: center;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      transition: border 0.3s ease;
-    }
+.signupField {
+  display: none;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.4s ease;
+}
 
-    input:focus {
-      outline: none;
-      border: 1px solid #ff726b;
-      color: #ff726b;
-    }
+.loginOrSignupField.signup_ON .signupField {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
 
-    .signupField {
-      display: none;
-    }
+#rememberMeField {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 15px 0;
+  font-size: 13px;
+  color: #718096;
+}
 
-    .loginOrSignupField.signup_ON .signupField {
-      display: block;
-    }
+#rememberMeField input {
+  margin-right: 8px;
+}
 
-    #rememberMeField {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 10px;
-    }
+#submit {
+  background-color: #3498DB;
+  color: white;
+  font-weight: 600;
+  width: 100%;
+  max-width: 320px;
+  padding: 14px;
+  margin: 25px auto 15px;
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 6px rgba(52, 152, 219, 0.2);
+}
 
-    #submit {
-      background-color: #3498DB;
-      color: white;
-      font-weight: bold;
-      width: 80%;
-      padding: 10px;
-      margin-top: 20px;
-      cursor: pointer;
-      border: none;
-      border-radius: 4px;
-      transition: background 0.3s;
-    }
+#submit:hover {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(52, 152, 219, 0.3);
+}
 
-    #submit:hover {
-      background-color: #2980b9;
-    }
+#submit:active {
+  transform: translateY(0);
+}
 
-    .position-radio {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      margin-top: 10px;
-    }
+.position-radio {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin: 15px 0;
+}
 
-    .position-radio label {
-      font-size: 14px;
-    }
+.position-radio label {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  color: #4a5568;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
 
-    .socialButton {
-      margin: 10px 5px;
-      display: inline-block;
-      padding: 8px 12px;
-      border-radius: 4px;
-      font-size: 14px;
-      text-decoration: none;
-      color: white;
-    }
+.position-radio label:hover {
+  color: #3498DB;
+}
 
-    .facebook {
-      background-color: #3b5998;
-    }
+.position-radio input {
+  margin-right: 6px;
+}
 
-    .linkedin {
+.socialButton {
+  margin: 12px 6px;
+  display: inline-block;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  text-decoration: none;
+  color: white;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.socialButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.socialButton:active {
+  transform: translateY(0);
+}
+
+.facebook {
+  background-color: #3b5998;
+}
+
+.linkedin {
   background-color: #0077B5;
 }
 
+.googleplus {
+  background-color: #db4a39;
+}
 
-    .googleplus {
-      background-color: #db4a39;
+.social-buttons {
+  margin-top: 25px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.5s ease 0.2s;
+}
+
+.loginOrSignupField.active .social-buttons {
+  opacity: 1;
+  transform: translateY(0);
+}
+.error-message {
+      color: #e74c3c;
+      font-size: 13px;
+      margin-top: 5px;
+      font-weight: normal;
+      text-transform: none;
+    }
+    .success-message {
+      color: #2ecc71;
+      font-size: 13px;
+      margin-top: 5px;
+      font-weight: normal;
+      text-transform: none;
     }
   </style>
 </head>
@@ -214,51 +315,183 @@
       </div>
     </div>
 
-    <form>
-      <input type="email" placeholder="E-mail" required />
-      <input type="password" placeholder="Password" required />
-
-      <div class="signupField">
-        <input type="text" placeholder="Full Name" />
-        <input type="password" placeholder="Confirm Password" />
-        <input type="tel" placeholder="Phone Number" />
-
-        <div class="position-radio">
-          <label><input type="radio" name="position" value="prof" checked /> Professor</label>
-          <label><input type="radio" name="position" value="etudiant" /> Student</label>
-        </div>
-      </div>
-
+    <!-- Login Form -->
+    <form id="loginForm">
+      <input type="email" name="email" placeholder="E-mail" required />
+      <input type="password" name="password" placeholder="Password" required />
+      
       <div id="rememberMeField">
-        <input type="checkbox" id="rememberMe" />
+        <input type="checkbox" id="rememberMe" name="rememberMe" />
         <label for="rememberMe">&nbsp;Remember me</label>
       </div>
 
       <input type="submit" id="submit" value="Login" />
+      <div id="loginMessage" class="error-message" style="display: none;"></div>
     </form>
 
-    <div>
-        <div>
-            <a href="https://www.facebook.com/dialog/oauth?client_id=YOUR_APP_ID" class="socialButton facebook">Facebook</a>
-            <a href="https://www.linkedin.com/oauth/v2/authorization?client_id=YOUR_CLIENT_ID" class="socialButton linkedin">LinkedIn</a>
-            <a href="https://accounts.google.com/o/oauth2/v2/auth?client_id=746263545146-fhr8n0ocav0llgmpckr0c9v1n2oo5ihh.apps.googleusercontent.com&redirect_uri=http://127.0.0.1:5500/front/dash/dash.html&response_type=code&scope=email profile&state=google_login" class="socialButton googleplus">Google</a>
-        </div>
+    <!-- Signup Form (initially hidden) -->
+    <form id="signupForm" class="signupField" style="display: none;">
+      <input type="text" name="fullName" placeholder="Full Name" required />
+      <input type="email" name="email" placeholder="E-mail" required />
+      <input type="password" name="password" placeholder="Password (min 6 characters)" required />
+      <input type="password" name="confirmPassword" placeholder="Confirm Password" required />
+      <input type="tel" name="phoneNumber" placeholder="Phone Number" required />
+
+      <div class="position-radio">
+        <label><input type="radio" name="position" value="prof" checked /> Professor</label>
+        <label><input type="radio" name="position" value="etudiant" /> Student</label>
+      </div>
+
+      <input type="submit" value="Sign up" />
+      <div id="signupMessage" class="error-message" style="display: none;"></div>
+    </form>
+
+    <div class="social-buttons">
+      <div>
+        <a href="/api/auth/facebook" class="socialButton facebook">Facebook</a>
+        <a href="/api/auth/linkedin" class="socialButton linkedin">LinkedIn</a>
+        <a href="/api/auth/google" class="socialButton googleplus">Google</a>
+      </div>
     </div>
   </section>
 
   <script>
     $(function () {
-      // Animate card on load
+      // Initialize form
       setTimeout(function () {
-        $('.loginOrSignupField').css({
-          'opacity': '1',
-          'transform': 'translate(-50%, -50%) scale(1)'
-        });
-      }, 300);
+        $('.loginOrSignupField').addClass('active');
+      }, 100);
 
+      // Toggle between login and signup forms
       $('.switchButtonOuter').click(function () {
         $('.loginOrSignupField').toggleClass('signup_ON');
-        $('#submit').val($('.loginOrSignupField').hasClass('signup_ON') ? 'Sign up' : 'Login');
+        if ($('.loginOrSignupField').hasClass('signup_ON')) {
+          $('#loginForm').hide();
+          $('#signupForm').show();
+          $('#loginMessage').hide();
+        } else {
+          $('#loginForm').show();
+          $('#signupForm').hide();
+          $('#signupMessage').hide();
+        }
+      });
+
+      // Handle login form submission
+      $('#loginForm').submit(function(e) {
+        e.preventDefault();
+        $('#loginMessage').hide().removeClass('success-message');
+        
+        const formData = {
+          email: $('input[name="email"]').val().trim(),
+          password: $('input[name="password"]').val()
+        };
+
+        $.ajax({
+          type: "POST",
+          url: "/api/v1/auth/login",
+          contentType: "application/json",
+          data: JSON.stringify(formData),
+          success: function(response) {
+            if (response.status === 'success') {
+              // Store token in localStorage or cookie
+              localStorage.setItem('authToken', response.token);
+              
+              // Redirect to dashboard
+              window.location.href = '/front/dash/dash.html';
+            } else {
+              showLoginError(response.message || 'Login failed');
+            }
+          },
+          error: function(xhr) {
+            const response = xhr.responseJSON;
+            if (response && response.alertType === 'validation_error') {
+              showLoginError(response.errors.map(e => e.msg).join('<br>'));
+            } else {
+              showLoginError(response?.message || 'Login failed. Please try again.');
+            }
+          }
+        });
+      });
+
+      // Handle signup form submission
+      $('#signupForm').submit(function(e) {
+        e.preventDefault();
+        $('#signupMessage').hide().removeClass('success-message');
+        
+        const formData = {
+          fullName: $('input[name="fullName"]').val().trim(),
+          email: $('input[name="email"]').val().trim(),
+          password: $('input[name="password"]').val(),
+          confirmPassword: $('input[name="confirmPassword"]').val(),
+          phoneNumber: $('input[name="phoneNumber"]').val(),
+          position: $('input[name="position"]:checked').val()
+        };
+
+        // Client-side validation
+        if (formData.password !== formData.confirmPassword) {
+          showSignupError('Password confirmation does not match');
+          return;
+        }
+
+        if (formData.password.length < 6) {
+          showSignupError('Password must be at least 6 characters');
+          return;
+        }
+
+        $.ajax({
+          type: "POST",
+          url: "/api/v1/auth/register",
+          contentType: "application/json",
+          data: JSON.stringify(formData),
+          success: function(response) {
+            if (response.status === 'success') {
+              $('#signupMessage')
+                .text('Registration successful! Please login.')
+                .addClass('success-message')
+                .show();
+              
+              // Auto-switch to login after successful registration
+              setTimeout(() => {
+                $('.loginOrSignupField').removeClass('signup_ON');
+                $('#loginForm').show();
+                $('#signupForm').hide();
+                $('#signupMessage').hide();
+              }, 2000);
+            } else {
+              showSignupError(response.message || 'Registration failed');
+            }
+          },
+          error: function(xhr) {
+            const response = xhr.responseJSON;
+            if (response && response.alertType === 'validation_error') {
+              showSignupError(response.errors.map(e => e.msg).join('<br>'));
+            } else if (response && response.alertType === 'duplicate_email') {
+              showSignupError('Email already registered');
+            } else {
+              showSignupError(response?.message || 'Registration failed. Please try again.');
+            }
+          }
+        });
+      });
+
+      // Helper functions
+      function showLoginError(message) {
+        $('#loginMessage')
+          .html(message)
+          .addClass('error-message')
+          .show();
+      }
+
+      function showSignupError(message) {
+        $('#signupMessage')
+          .html(message)
+          .addClass('error-message')
+          .show();
+      }
+
+      // Add smooth hover effects
+      $('input, button, .socialButton').on('mouseenter mouseleave', function(e) {
+        $(this).toggleClass('hover', e.type === 'mouseenter');
       });
     });
   </script>
